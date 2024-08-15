@@ -7,7 +7,7 @@ import vista.frmProductos;
 
 
 public class ctrlProducto implements MouseListener{
-    
+   
     //1- Llamar a las otras capas(modelo, vista)
     private frmProductos vista;
     private Producto modelo;
@@ -17,17 +17,23 @@ public class ctrlProducto implements MouseListener{
         this.vista = Vista;
         this.modelo = Modelo;
         
-        vista.btnGuardar.addMouseListener(this);        
+        vista.btnGuardar.addMouseListener(this); 
+        
+        //Para mostrar los datos
+        vista.jtbProductos.addMouseListener(this);
+        modelo.Mostrar(vista.jtbProductos);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        
       if(e.getSource() == vista.btnGuardar){
           modelo.setNombre(vista.txtNombre.getText());
           modelo.setPrecio(Double.parseDouble( vista.txtPrecio.getText()));
           modelo.setCategoria(vista.txtCategoria.getText());
           
           modelo.Guardar();
+          modelo.Mostrar(vista.jtbProductos);
       }
     }
    
